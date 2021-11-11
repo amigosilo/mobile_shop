@@ -4,6 +4,12 @@ import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'screen2.dart';
 import 'screen3.dart';
+import 'cart.dart';
+import 'error.dart';
+import 'product_info.dart';
+import 'product_list.dart';
+import 'transaction_history.dart';
+import 'user_page.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 
 void main() async {
@@ -22,7 +28,18 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: const MyHomePage(title: 'Login Screen'),
+      initialRoute: '/',
+      routes: {
+        '/': (context) => const MyHomePage(title: 'Screen 1'),
+        '/product_list': (context) => const ProductList(title: 'Product List'),
+        '/screen2': (context) => const Screen2(title: 'Screen 2'),
+        '/screen3': (context) => const Screen3(title: 'Screen 3'),
+        '/product_info': (context) => const ProductInfo(title: 'Product Info'),
+        '/transaction_history': (context) => const TransactionHistory(title: 'Transaction History'),
+        '/user_page': (context) => const UserPage(title: 'User Page'),
+        '/cart': (context) => const Cart(title: 'Cart'),
+        '/error': (context) => const ProductList(title: 'Error'),
+      }
     );
   }
 }
@@ -115,13 +132,7 @@ class _MyHomePageState extends State<MyHomePage> {
                       children: [
                         TextButton(
                           onPressed: () {
-                            Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                builder: (BuildContext context) =>
-                                    const Screen3(title: 'Screen 3'),
-                              ),
-                            );
+                            Navigator.pushNamed(context, '/screen3');
                           },
                           child: const Text('Forget password?',
                               style: TextStyle(
@@ -143,14 +154,12 @@ class _MyHomePageState extends State<MyHomePage> {
 
                                 try {
 
-                                  final _newuser = await _auth.createUserWithEmailAndPassword(email:_email,password: _password);
+                                  final _newuser = await _auth.signInWithEmailAndPassword(email:_email,password: _password);
 
                                   if (_newuser!= null)
                                   {
-                                    // Navigator.pushName(context, 'ShopScreen');
-                                    print("Success");
+                                    Navigator.pushNamed(context, '/product_list');
                                   }
-
                                 }
                                 catch (e) {
                                   print(e);
@@ -178,13 +187,7 @@ class _MyHomePageState extends State<MyHomePage> {
                         const Text("Don't have an account?"),
                         TextButton(
                             onPressed: () {
-                              Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                  builder: (BuildContext context) =>
-                                      const Screen2(title: 'Screen2'),
-                                ),
-                              );
+                              Navigator.pushNamed(context, '/screen2');
                             },
                             child: const Text('Sign up'),
                             style: ButtonStyle(
