@@ -38,7 +38,7 @@ class MyApp extends StatelessWidget {
         '/transaction_history': (context) => const TransactionHistory(title: 'Transaction History'),
         '/user_page': (context) => const UserPage(title: 'User Page'),
         '/cart': (context) => const Cart(title: 'Cart'),
-        '/error': (context) => const ProductList(title: 'Error'),
+        '/error': (context) => const Error(title: 'Error'),
       }
     );
   }
@@ -151,13 +151,9 @@ class _MyHomePageState extends State<MyHomePage> {
                           width: 300,
                           child: RaisedButton(
                             onPressed: () async {
-
                                 try {
-
-                                  final _newuser = await _auth.signInWithEmailAndPassword(email:_email,password: _password);
-
-                                  if (_newuser!= null)
-                                  {
+                                  final _newUser = await _auth.signInWithEmailAndPassword(email:_email,password: _password);
+                                  if (_newUser != null) {
                                     Navigator.pushNamed(context, '/product_list');
                                   }
                                 }
@@ -165,18 +161,16 @@ class _MyHomePageState extends State<MyHomePage> {
                                   print(e);
                                 }
                             },
-
-
-
-                              shape: RoundedRectangleBorder(
-                                  borderRadius: BorderRadius.circular(80.0)),
-                              child: const Text('Log-in',
-                                  style: TextStyle(
-                                    color: Colors.white,
-                                    fontSize: 25,
-                                  )
-                              ),
-                              color: Colors.black,
+                            shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(80.0)
+                            ),
+                            child: const Text('Log-in',
+                                style: TextStyle(
+                                  color: Colors.white,
+                                  fontSize: 25,
+                                )
+                            ),
+                            color: Colors.black,
                           ),
                         ),
                       ],
@@ -192,7 +186,8 @@ class _MyHomePageState extends State<MyHomePage> {
                             child: const Text('Sign up'),
                             style: ButtonStyle(
                               foregroundColor: MaterialStateProperty.all<Color>(
-                                  Colors.black),
+                                  Colors.black
+                              ),
                             )
                         ),
                       ],
