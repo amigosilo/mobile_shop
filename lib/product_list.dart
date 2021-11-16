@@ -11,7 +11,6 @@ class ProductList extends StatefulWidget {
 }
 
 class _ProductListState extends State<ProductList> {
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -24,7 +23,32 @@ class _ProductListState extends State<ProductList> {
               padding: const EdgeInsets.all(20.0),
               child: Column(
                 children: [
-                  Text('Product_list')
+                  Row(
+                    children: [
+                      Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Card(
+                            child: Container(
+                              height: 150,
+                              width: 150,
+                              color: Colors.black,
+                              child: Column(
+                                children: [
+                                  Container(
+                                    height: 120,
+                                    width: 130,
+                                    decoration: const BoxDecoration(
+                                        color: Colors.white),
+                                  )
+                                ],
+                              ),
+                            ),
+                          ),
+                        ],
+                      ),
+                    ],
+                  )
                 ],
               ),
             )
