@@ -79,17 +79,11 @@ class _ProductListState extends State<ProductList> {
                         ),
                       ],
                     ),
-          crossAxisCount: 2,
-          children: List.generate(10, (index) {
-            return Center(
-              child: Text(
-                'Item $index',
-                style: Theme.of(context).textTheme.headline5,
-              ),
-            );
-          }),
+                  ),
+              ]),
+            ),
+          ]),
         ),
-      ),
-    );
+      );
   }
 }
