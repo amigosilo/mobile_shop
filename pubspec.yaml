@@ -63,6 +63,16 @@ flutter:
   # To add assets to your application, add an assets section, like this:
   assets:
     - assets/images/bg.png
+    - assets/images/dishwasher.jpg
+    - assets/images/extensioncord.jpg
+    - assets/images/iron.jpg
+    - assets/images/microwave.jpg
+    - assets/images/oven.jpg
+    - assets/images/refrigerator.jpeg
+    - assets/images/ricecooker.jpg
+    - assets/images/tv.jpg
+    - assets/images/vacuumcleaner.jpg
+    - assets/images/washingmachine.jpg
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware.
