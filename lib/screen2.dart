@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:cloud_firestore/cloud_firestore.dart';
+// import 'package:cloud_firestore/cloud_firestore.dart';
 
 class Screen2 extends StatefulWidget {
   const Screen2({Key? key, required this.title}) : super(key: key);
@@ -16,7 +16,7 @@ class _Screen2State extends State<Screen2> {
   String _email = "";
   String _contactNo = "";
   String _password = "";
-  final _firestore = FirebaseFirestore.instance;
+  // final _firestore = FirebaseFirestore.instance;
   final _auth = FirebaseAuth.instance;
   @override
   Widget build(BuildContext context) {
@@ -48,7 +48,7 @@ class _Screen2State extends State<Screen2> {
                           fontWeight: FontWeight.bold,
                           fontFamily: 'Times New Roman'),
                     ),
-                    Container(width: 20, height: 20),
+                    const SizedBox(width: 20, height: 20),
                     Row(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
@@ -68,7 +68,7 @@ class _Screen2State extends State<Screen2> {
                         ),
                       ],
                     ),
-                    Container(width: 20, height: 20),
+                    const SizedBox(width: 20, height: 20),
                     const Text('Name',
                         style: TextStyle(
                           fontSize: 20.0,
@@ -122,19 +122,19 @@ class _Screen2State extends State<Screen2> {
                       ),
                       obscureText: true,
                     ),
-                    Container(width: 20, height: 20),
+                    const SizedBox(width: 20, height: 20),
                     Row(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
-                        Container(
+                        SizedBox(
                           height: 50.0,
                           width: 300,
                           child: RaisedButton( // Button to sign-up
                             onPressed: () async {
                               try {
 
-                                var newuser = await _auth.createUserWithEmailAndPassword(email: _email, password: _password);
-                                if (newuser != null) {
+                                var newUser = await _auth.createUserWithEmailAndPassword(email: _email, password: _password);
+                                if (newUser != null) {
                                   print('user has been created');
 
                                 } else {
