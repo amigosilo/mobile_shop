@@ -1,10 +1,6 @@
-// ignore_for_file: sized_box_for_whitespace, deprecated_member_use
-
 import 'package:flutter/material.dart';
-import 'package:mobile_shop/screen1.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:firebase_core/firebase_core.dart';
 
 class Screen2 extends StatefulWidget {
   const Screen2({Key? key, required this.title}) : super(key: key);
@@ -140,13 +136,7 @@ class _Screen2State extends State<Screen2> {
                                 var newuser = await _auth.createUserWithEmailAndPassword(email: _email, password: _password);
                                 if (newuser != null) {
                                   print('user has been created');
-                                  // _firestore.collection('Users').add({
-                                  //   'username': _name,
-                                  //   'email': _email,
-                                  //   'contactNo': _contactNo,
-                                  //   'password': _password,
-                                  // });
-                                  // Navigator.pushNamed(context, '/product_list');
+
                                 } else {
                                   print('Unsuccessful');
                                 }
@@ -168,13 +158,7 @@ class _Screen2State extends State<Screen2> {
                     TextButton(
                       // Button to cancel sign-up and return to Screen 1
                       onPressed: () {
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                            builder: (BuildContext context) =>
-                                const MyHomePage(title: 'Screen 1'),
-                          ),
-                        );
+                        Navigator.pushNamed(context, '/');
                       },
                       child: const Text('Back to Login',
                           style: TextStyle(color: Colors.black)),
