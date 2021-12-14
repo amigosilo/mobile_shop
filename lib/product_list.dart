@@ -1,6 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class ProductList extends StatefulWidget {
   const ProductList({Key? key, required this.title}) : super(key: key);
@@ -12,6 +13,7 @@ class ProductList extends StatefulWidget {
 }
 
 class _ProductListState extends State<ProductList> {
+  Future<SharedPreferences> prefs = SharedPreferences.getInstance();
 
   @override
   Widget build(BuildContext context) {
@@ -65,7 +67,13 @@ class _ProductListState extends State<ProductList> {
                                       child: ListView(
                                         children: snapshot.data!.docs.map((document) {
                                           return Center(
-                                            child: Text(document['name']),
+                                            child: TextButton(
+                                              child: Text(document['name']),
+                                              onPressed: () {
+                                                // prefs.setString('product_id', document['id']);
+                                                Navigator.pushNamed(context, '/product_info');
+                                              },
+                                            ),
                                           );
                                         }).toList(),
                                       ),

@@ -136,7 +136,7 @@ class _Screen2State extends State<Screen2> {
                                 var newUser = await _auth.createUserWithEmailAndPassword(email: _email, password: _password);
                                 if (newUser != null) {
                                   print('user has been created');
-
+                                  Navigator.pushNamed(context, '/');
                                 } else {
                                   print('Unsuccessful');
                                 }
