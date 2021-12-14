@@ -2,6 +2,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:flutter/rendering.dart';
 
 class ProductList extends StatefulWidget {
   const ProductList({Key? key, required this.title}) : super(key: key);
@@ -12,11 +13,13 @@ class ProductList extends StatefulWidget {
   State<ProductList> createState() => _ProductListState();
 }
 
+
 class _ProductListState extends State<ProductList> {
   Future<SharedPreferences> prefs = SharedPreferences.getInstance();
 
   @override
   Widget build(BuildContext context) {
+
     return Scaffold(
       resizeToAvoidBottomInset: false,
       body: Center(
@@ -26,32 +29,73 @@ class _ProductListState extends State<ProductList> {
             Padding(
               padding: const EdgeInsets.all(20.0),
               child: Column(
-                children: [
+                children:[
                   Expanded(
                     child: Row(
                       children: [
                         Expanded(
                           child: Column(
+
+
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
-                              Card(
-                                child: Container(
-                                  height: 150,
-                                  width: 150,
-                                  color: Colors.black,
-                                  child: Column(
-                                    children: [
-                                      Container(
-                                        height: 120,
-                                        width: 130,
-                                        decoration: const BoxDecoration(
-                                            color: Colors.white
-                                        ),
-                                      ),
-                                    ],
-                                  ),
-                                ),
+
+                              Image.asset('assets/images/iron.jpeg',
+                              height: 200,
+                              width: 200,
+                              fit:  BoxFit.cover,
+
+
+
                               ),
+                              TextButton(
+                                child: Text(
+                                    "Product Lists".toUpperCase(),
+                                    style: TextStyle(fontSize: 19)
+                                     ),
+
+                                style: ButtonStyle(
+
+
+
+                                    padding: MaterialStateProperty.all<EdgeInsets>(EdgeInsets.all(13)),
+
+                                    foregroundColor: MaterialStateProperty.all<Color>(Colors.white),
+                                    backgroundColor: MaterialStateProperty.all<Color>(Colors.black),
+                                    shape: MaterialStateProperty.all<RoundedRectangleBorder>(
+                                        RoundedRectangleBorder(
+                                            borderRadius: BorderRadius.circular(18.6),
+
+                                        )
+                                    )
+                                ), onPressed: null,
+
+                              ),
+                              TextButton(
+                                child: Text(
+                                    "Product Lists".toUpperCase(),
+                                    style: TextStyle(fontSize: 19)
+                                ),
+
+                                style: ButtonStyle(
+
+
+                                    padding: MaterialStateProperty.all<EdgeInsets>(EdgeInsets.all(13)),
+                                    foregroundColor: MaterialStateProperty.all<Color>(Colors.white),
+                                    backgroundColor: MaterialStateProperty.all<Color>(Colors.black),
+                                    shape: MaterialStateProperty.all<RoundedRectangleBorder>(
+                                        RoundedRectangleBorder(
+                                          borderRadius: BorderRadius.circular(18.6),
+
+                                        )
+                                    )
+                                ), onPressed: null,
+
+                              ),
+
+
+
+
                               StreamBuilder(
                                 stream: FirebaseFirestore.instance.collection('product_list').snapshots(),
                                 builder: (BuildContext context, AsyncSnapshot<QuerySnapshot> snapshot) {
