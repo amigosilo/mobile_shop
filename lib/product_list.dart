@@ -35,67 +35,8 @@ class _ProductListState extends State<ProductList> {
                       children: [
                         Expanded(
                           child: Column(
-
-
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
-
-                              Image.asset('assets/images/iron.jpeg',
-                              height: 200,
-                              width: 200,
-                              fit:  BoxFit.cover,
-
-
-
-                              ),
-                              TextButton(
-                                child: Text(
-                                    "Product Lists".toUpperCase(),
-                                    style: TextStyle(fontSize: 19)
-                                     ),
-
-                                style: ButtonStyle(
-
-
-
-                                    padding: MaterialStateProperty.all<EdgeInsets>(EdgeInsets.all(13)),
-
-                                    foregroundColor: MaterialStateProperty.all<Color>(Colors.white),
-                                    backgroundColor: MaterialStateProperty.all<Color>(Colors.black),
-                                    shape: MaterialStateProperty.all<RoundedRectangleBorder>(
-                                        RoundedRectangleBorder(
-                                            borderRadius: BorderRadius.circular(18.6),
-
-                                        )
-                                    )
-                                ), onPressed: null,
-
-                              ),
-                              TextButton(
-                                child: Text(
-                                    "Product Lists".toUpperCase(),
-                                    style: TextStyle(fontSize: 19)
-                                ),
-
-                                style: ButtonStyle(
-
-
-                                    padding: MaterialStateProperty.all<EdgeInsets>(EdgeInsets.all(13)),
-                                    foregroundColor: MaterialStateProperty.all<Color>(Colors.white),
-                                    backgroundColor: MaterialStateProperty.all<Color>(Colors.black),
-                                    shape: MaterialStateProperty.all<RoundedRectangleBorder>(
-                                        RoundedRectangleBorder(
-                                          borderRadius: BorderRadius.circular(18.6),
-
-                                        )
-                                    )
-                                ), onPressed: null,
-
-                              ),
-
-
-
-
                               StreamBuilder(
                                 stream: FirebaseFirestore.instance.collection('product_list').snapshots(),
                                 builder: (BuildContext context, AsyncSnapshot<QuerySnapshot> snapshot) {
@@ -111,12 +52,34 @@ class _ProductListState extends State<ProductList> {
                                       child: ListView(
                                         children: snapshot.data!.docs.map((document) {
                                           return Center(
-                                            child: TextButton(
-                                              child: Text(document['name']),
-                                              onPressed: () {
-                                                // prefs.setString('product_id', document['id']);
-                                                Navigator.pushNamed(context, '/product_info');
-                                              },
+                                            child: Column(
+                                              children: [
+                                                Image.asset(document['img_path'],
+                                                  height: 200,
+                                                  width: 200,
+                                                  fit:  BoxFit.fitWidth,
+                                                ),
+                                                TextButton(
+                                                  child: Text(
+                                                      document['name'],
+                                                      style: TextStyle(fontSize: 19)
+                                                  ),
+                                                  style: ButtonStyle(
+                                                      padding: MaterialStateProperty.all<EdgeInsets>(EdgeInsets.all(13)),
+                                                      foregroundColor: MaterialStateProperty.all<Color>(Colors.white),
+                                                      backgroundColor: MaterialStateProperty.all<Color>(Colors.black),
+                                                      shape: MaterialStateProperty.all<RoundedRectangleBorder>(
+                                                          RoundedRectangleBorder(
+                                                            borderRadius: BorderRadius.circular(18.6),
+                                                          )
+                                                      )
+                                                  ),
+                                                  onPressed: () {
+                                                    // prefs.setString('product_id', document['id']);
+                                                    Navigator.pushNamed(context, '/product_info');
+                                                  },
+                                                ),
+                                              ],
                                             ),
                                           );
                                         }).toList(),
