@@ -1,8 +1,5 @@
-// ignore_for_file: sized_box_for_whitespace, deprecated_member_use
-
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:mobile_shop/screen1.dart';
 
 class Screen3 extends StatefulWidget {
   const Screen3({Key? key, required this.title}) : super(key: key);
@@ -72,12 +69,7 @@ class _Screen3State extends State<Screen3> {
                         borderRadius: BorderRadius.circular(80.0),
                       ),
                       onPressed: () {
-                        Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                              builder: (BuildContext context) =>
-                                  const MyHomePage(title: 'Screen 1'),
-                            ));
+                        Navigator.pushNamed(context, '/');
                       },
                       child: const Text(
                         'Submit',
@@ -95,13 +87,7 @@ class _Screen3State extends State<Screen3> {
                           MaterialStateProperty.all<Color>(Colors.black),
                     ),
                     onPressed: () {
-                      Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                              builder: (BuildContext context) =>
-                                  const MyHomePage(
-                                    title: 'Screen 1',
-                                  )));
+                      Navigator.pushNamed(context, '/');
                     },
                     child: const Text('Back to login'),
                   ),
